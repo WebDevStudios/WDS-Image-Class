@@ -50,7 +50,7 @@ Gets the image placeholder at the size you want.
 
 ```php
 wds_get_image_placeholder_uri( $args )
-`
+```
 
 Resizes an image and passes back the URI of that new image.
 
