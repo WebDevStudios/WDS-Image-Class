@@ -32,41 +32,77 @@ wds_get_attachment_uri_or_placeholder_uri( $args );
 
 Return the default arguments (see `$args` array above).
 
+`wds_get_image_uri_arg_defaults()`
+
+Gets the URI of the first image found in the post.
+
 ```php
-wds_get_image_uri_arg_defaults()
+wds_get_first_image_in_post_uri( $args )
+```
+
+Get the post image, and use a placeholder if there isn't one.
+
+```php
+wds_get_image_uri( $args )
+```
+
+Gets the image placeholder at the size you want.
+
+```php
+wds_get_image_placeholder_uri( $args )
+`
+
+Resizes an image and passes back the URI of that new image.
+
+```php
+wds_get_resize_image_uri( $args )
+```
+
+Get information about the default image sizes.
+
+`wds_get_wp_size_options()`
+
+
+Sets the placeholder image in the WP Customizer.
+
+`wds_image_placeholder_customizer( $wp_customizer )`
+
+Checks the variable as an acceptable size format.
+
+These formats are WP sizes: full, large, medium, thumbnail or a custom width/height, e.g:
+
+```php
+array(
+	'width'  => 150,
+	'height' => 150,
+)
 ```
 
 ```php
-wds_get_first_image_in_post_uri()
-```
-```php
-wds_get_image_placeholder_uri()
-```
-```php
-wds_get_image_uri()
+wds_is_acceptable_size_choice( $size )
 ```
 
-```php
-wds_get_resize_image_uri()
-```
-```php
-wds_get_wp_size_options()
-```
-```php
-wds_image_placeholder_customizer()
-```
-```php
-wds_is_acceptable_size_choice()
-```
+
 ```php
 wds_is_wp_named_size()
 ```
+
+Sets the default image size.
+Accepted values are full|large|medium|thumbnail or array( 'width', 'height' ).
+
 ```php
-wds_set_default_size_of_image()
+wds_set_default_size_of_image( $size )
 ```
+
+Sets the default placeholder size.
+Accepted values are full|large|medium|thumbnail or array( 'width', 'height' ).
+
 ```php
-wds_set_default_size_placeholder()
+wds_set_default_size_placeholder( $size )
 ```
+
+Outputs the post image or placeholder.
+
 ```php
-wds_the_image()
+wds_the_image( $args )
 ```
