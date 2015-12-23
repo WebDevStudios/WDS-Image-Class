@@ -30,6 +30,12 @@ $args = array(
 wds_get_attachment_uri_or_placeholder_uri( $args );
 ```
 
+Return the default arguments (see `$args` array above).
+
+```php
+wds_get_image_uri_arg_defaults()
+```
+
 ```php
 wds_get_first_image_in_post_uri()
 ```
@@ -39,9 +45,7 @@ wds_get_image_placeholder_uri()
 ```php
 wds_get_image_uri()
 ```
-```php
-wds_get_image_uri_arg_defaults()
-```
+
 ```php
 wds_get_resize_image_uri()
 ```
