@@ -71,13 +71,16 @@ wds_get_resize_image_uri( $args )
 These formats are WP sizes: full, large, medium, thumbnail or a custom width/height, e.g:
 
 ```php
-array(
-	'width'  => 150,
-	'height' => 150,
-)
-```
+ // e.g.:
+ // $size = array(
+ //	'width'  => 150,
+ //	'height' => 150,
+ // );
+ //
+ // or:
+ //
+ // $size = 'thumbnail';
 
-```php
 wds_is_acceptable_size_choice( $size )
 ```
 
