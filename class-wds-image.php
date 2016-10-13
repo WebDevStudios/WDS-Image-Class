@@ -500,7 +500,7 @@ class WDS_Image {
 	 *
 	 * @author Aubrey Portwood
 	 * @since  1.0.0
-	 * @param  string $size                 The desired size of the image.
+	 * @param  array $args                  An array of arguments.
 	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
 	public function the_image( $args = array() ) {
