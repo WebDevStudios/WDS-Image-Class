@@ -608,7 +608,7 @@ class WDS_Image {
 			'filename' => false,
 		) );
 
-		// Set filename (it's easier)
+		// Set filename (it's easier).
 		$filename = $args['filename'];
 
 		// Can't work with defaults.
