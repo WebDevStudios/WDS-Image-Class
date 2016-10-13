@@ -61,7 +61,7 @@ class WDS_Image {
 			return;
 		}
 
-		return ( 'medium' == $size || 'full' == $size || 'thumbnail' == $size || 'large' == $size );
+		return ( 'medium' === $size || 'full' === $size || 'thumbnail' === $size || 'large' === $size );
 	}
 
 	/**
@@ -399,7 +399,7 @@ class WDS_Image {
 	 */
 	public function is_image_file( $url_to_file = '', $file_types = array() ) {
 		// If no URL was passed, bail.
-		if ( '' == $url_to_file ) {
+		if ( '' === $url_to_file ) {
 			return false;
 		}
 
@@ -533,7 +533,7 @@ class WDS_Image {
 			$src = get_stylesheet_directory_uri() . "/images/$filename";
 
 			// Resize the image (though it's not an attachment) if full is not requested.
-			if ( $args['size'] != 'full' ) {
+			if ( $args['size'] !== 'full' ) {
 				return $this->get_resize_image_uri( array(
 					'src'      => get_stylesheet_directory() . "/images/$filename",
 					'size'     => $args['size'],
