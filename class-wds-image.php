@@ -195,7 +195,7 @@ class WDS_Image {
 	 *
 	 * @author Aubrey Portwood
 	 * @since  1.0.0
-	 * @param  string $size                The size of the images/placeholder.
+	 * @param  array $args                 An array of arguments.
 	 * @return string                      The URI of the image or false if nothing is found.
 	 * @see  get_image_uri_arg_defaults()  Argument defaults.
 	 */
