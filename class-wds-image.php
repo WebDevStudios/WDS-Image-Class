@@ -693,6 +693,13 @@ class WDS_Image {
 		return $args['src'];
 	}
 
+	/**
+	 * Retrieve the saved size options from WordPress.
+	 *
+	 * @author Chris Reynolds
+	 * @since  1.0.0
+	 * @return array An array of stored sizes from the WordPress options table.
+	 */
 	public function get_wp_size_options() {
 		return  array(
 			'thumbnail' => array(
@@ -719,49 +726,188 @@ $wds_image = new WDS_Image();
  * =====================================================
  */
 
+/**
+ * Get the attachment URI or pass back a placeholder.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  array $args                  Arguments.
+ * @return string|boolean               Placeholder URI.
+ * @see    get_image_uri_arg_defaults() Default arguments.
+ */
 function wds_get_attachment_uri_or_placeholder_uri( $args ) {
 	global $wds_image;
-	return $wds_image->get_attachment_uri_or_placeholder_uri( $args ); }
-function wds_get_first_image_in_post_uri( $args ) {
-	global $wds_image;
-	return $wds_image->get_first_image_in_post_uri( $args ); }
-function wds_get_image_placeholder_uri( $args = array() ) {
-	global $wds_image;
-	return $wds_image->get_image_placeholder_uri( $args ); }
-function wds_get_image_uri( $args = array() ) {
-	global $wds_image;
-	return $wds_image->get_image_uri( $args ); }
-function wds_get_image_uri_arg_defaults() {
-	global $wds_image;
-	return $wds_image->get_image_uri_arg_defaults(); }
-function wds_get_resize_image_uri( $args = array() ) {
-	global $wds_image;
-	return $wds_image->get_resize_image_uri( $args ); }
-function wds_get_wp_size_options() {
-	global $wds_image;
-	return $wds_image->get_wp_size_options(); }
-function wds_image_placeholder_customizer( $wp_customize ) {
-	global $wds_image;
-	return $wds_image->image_placeholder_customizer( $wp_customize ); }
-function wds_is_acceptable_size_choice( $size ) {
-	global $wds_image;
-	return $wds_image->is_acceptable_size_choice( $size ); }
-function wds_is_wp_named_size( $size ) {
-	global $wds_image;
-	return $wds_image->is_wp_named_size( $size ); }
-function wds_set_default_size_of_image( $size ) {
-	global $wds_image;
-	return $wds_image->set_default_size_of_image( $size ); }
-function wds_set_default_size_placeholder( $size ) {
-	global $wds_image;
-	return $wds_image->set_default_size_placeholder( $size ); }
-function wds_the_image( $args = array() ) {
-	global $wds_image;
-	return $wds_image->the_image( $args ); }
+	return $wds_image->get_attachment_uri_or_placeholder_uri( $args );
+}
 
 /**
- * == We could do this, but I can't get this to work ==
- * =============================================================
+ * Gets the URI of the first image found in the post.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  array $args                  Arguments.
+ * @return string                       The URI.
+ * @see    get_image_uri_arg_defaults() Default arguments.
+ */
+function wds_get_first_image_in_post_uri( $args ) {
+	global $wds_image;
+	return $wds_image->get_first_image_in_post_uri( $args );
+}
+
+/**
+ * Gets the image placeholder at the size you want.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  array $args                  The Arguments.
+ * @return string                       The placeholder at the size you want.
+ * @see    get_image_uri_arg_defaults() Default arguments.
+ */
+function wds_get_image_placeholder_uri( $args = array() ) {
+	global $wds_image;
+	return $wds_image->get_image_placeholder_uri( $args );
+}
+
+/**
+ * Get the post image, and use a placeholder if there isn't one.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  array $args                 An array of arguments.
+ * @return string                      The URI of the image or false if nothing is found.
+ * @see  get_image_uri_arg_defaults()  Argument defaults.
+ */
+function wds_get_image_uri( $args = array() ) {
+	global $wds_image;
+	return $wds_image->get_image_uri( $args );
+}
+
+/**
+ * Default arguments for the_image() and get_image_uri().
+ *
+ * @author Aubrey Portwood, Chris Reynolds
+ * @since  1.0.0
+ * @return array The default arguments for wp_parse_args().
+ */
+function wds_get_image_uri_arg_defaults() {
+	global $wds_image;
+	return $wds_image->get_image_uri_arg_defaults();
+}
+
+/**
+ * Resizes an image and passes back the URI of that new image.
+ *
+ * @author Aubrey Portwood, Chris Reynolds
+ * @since  1.0.0
+ * @param  array $args                  Arguments.
+ * @return string                       If we can resize the image, the resize image URI, if not the original.
+ * @see    get_image_uri_arg_defaults() Default arguments.
+ */
+function wds_get_resize_image_uri( $args = array() ) {
+	global $wds_image;
+	return $wds_image->get_resize_image_uri( $args );
+}
+
+/**
+ * Retrieve the saved size options from WordPress.
+ *
+ * @author Chris Reynolds
+ * @since  1.0.0
+ * @return array An array of stored sizes from the WordPress options table.
+ */
+function wds_get_wp_size_options() {
+	global $wds_image;
+	return $wds_image->get_wp_size_options();
+}
+
+/**
+ * Allows us to set the placeholder image.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  object $wp_customize The WP Customizer class.
+ */
+function wds_image_placeholder_customizer( $wp_customize ) {
+	global $wds_image;
+	return $wds_image->image_placeholder_customizer( $wp_customize );
+}
+
+/**
+ * Checks the variable as an acceptable size format.
+ *
+ * These formats are WP sizes: full, large, medium, thumbnail or
+ * a custom width/height, e.g:
+ *
+ *     array(
+ *         'width'  => 150,
+ *         'height' => 150,
+ *     )
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  array|string $size full|large|medium|thumbnail or array( 'width', 'height' ).
+ * @return boolean            True if it's WP format or acceptable array, false if not.
+ */
+function wds_is_acceptable_size_choice( $size ) {
+	global $wds_image;
+	return $wds_image->is_acceptable_size_choice( $size );
+}
+
+/**
+ * Figures out if the size requested is a WP named size like 'large'.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  mixed $size  The named size.
+ * @return boolean       True if it is a named size, false if not.
+ */
+function wds_is_wp_named_size( $size ) {
+	global $wds_image;
+	return $wds_image->is_wp_named_size( $size );
+}
+
+/**
+ * Sets the default image size.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param string|array $size full|large|medium|thumbnail or array( 'width', 'height' ).
+ */
+function wds_set_default_size_of_image( $size ) {
+	global $wds_image;
+	return $wds_image->set_default_size_of_image( $size );
+}
+
+/**
+ * Sets the default placeholder size.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param string|array $size full|large|medium|thumbnail or array( 'width', 'height' ).
+ */
+function wds_set_default_size_placeholder( $size ) {
+	global $wds_image;
+	return $wds_image->set_default_size_placeholder( $size );
+}
+
+/**
+ * Outputs the post image or placeholder.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ * @param  array $args                  An array of arguments.
+ * @see    get_image_uri_arg_defaults() Default arguments.
+ */
+function wds_the_image( $args = array() ) {
+	global $wds_image;
+	return $wds_image->the_image( $args );
+}
+
+
+/**
+ * We could do this, but I can't get this to work ~AP
+ *
+ * @todo
  * $class = new ReflectionClass( 'WDS_Image' );
  * $methods = $class->getMethods( ReflectionMethod::IS_PUBLIC );
  * foreach( $methods as $function ) {
