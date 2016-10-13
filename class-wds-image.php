@@ -11,6 +11,11 @@
  * a placeholder (which you can define using the customizer).
  *
  * It also offers up some handy tools you can use like resizing images, etc.
+ *
+ * @package WDS_Image
+ * @author  Aubrey Portwood, Chris Reynolds
+ * @version 1.1.0
+ */
 
  */
 class WDS_Image {
