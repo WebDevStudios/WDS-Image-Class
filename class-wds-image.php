@@ -17,6 +17,12 @@
  * @version 1.1.0
  */
 
+/**
+ * Main WDS_Image class
+ *
+ * @package WDS_Image
+ * @author  Aubrey Portwood, Chris Reynolds
+ * @since   1.0
  */
 class WDS_Image {
 
