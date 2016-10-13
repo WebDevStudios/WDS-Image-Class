@@ -420,7 +420,7 @@ class WDS_Image {
 	 */
 	public function get_image_id( $image_url ) {
 		global $wpdb;
-		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) );
+		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) ); // WPCS: db call ok, cache ok.
 	        return $attachment[0];
 	}
 
