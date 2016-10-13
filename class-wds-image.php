@@ -720,14 +720,16 @@ function wds_the_image( $args = array() ) {
 	global $wds_image;
 	return $wds_image->the_image( $args ); }
 
-// ** We could do this, but I can't get this to work **
-// =============================================================
-// $class = new ReflectionClass( 'WDS_Image' );
-// $methods = $class->getMethods( ReflectionMethod::IS_PUBLIC );
-// foreach( $methods as $function ) {
-// if ( '__construct' != $function->name ) {
-// $function_name = $function->name;
-// $function = "function wds_$function_name( " . '$args = array()' . " ) { global " . '$wds_image' . "; return " . '$wds_image' . "->$function_name( " . '$args' . " ); }";
-// eval( $function );
-// }
-// }
+/**
+ * == We could do this, but I can't get this to work ==
+ * =============================================================
+ * $class = new ReflectionClass( 'WDS_Image' );
+ * $methods = $class->getMethods( ReflectionMethod::IS_PUBLIC );
+ * foreach( $methods as $function ) {
+ * if ( '__construct' != $function->name ) {
+ * $function_name = $function->name;
+ * $function = "function wds_$function_name( " . '$args = array()' . " ) { global " . '$wds_image' . "; return " . '$wds_image' . "->$function_name( " . '$args' . " ); }";
+ * eval( $function );
+ * }
+ * }
+ */
