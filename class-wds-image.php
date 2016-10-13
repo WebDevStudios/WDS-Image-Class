@@ -539,9 +539,9 @@ class WDS_Image {
 
 		// Logo Setting (Control).
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'image_placeholder', array(
-			'label'    => __( 'Placeholder Image', 'clp' ),
-			'section'  => 'image_placeholder',
-			'settings' => 'image_placeholder',
+			'label'       => __( 'Placeholder Image', 'clp' ),
+			'section'     => 'image_placeholder',
+			'settings'    => 'image_placeholder',
 		) ) );
 
 	}
@@ -660,7 +660,7 @@ class WDS_Image {
 			} elseif ( isset( $args['size']['width'] ) && isset( $args['size']['height'] ) ) {
 				$sizes = array(
 					'custom' => array(
-						'width' => $args['size']['width'],
+						'width'  => $args['size']['width'],
 						'height' => $args['size']['height'],
 					),
 				);
@@ -703,15 +703,15 @@ class WDS_Image {
 	public function get_wp_size_options() {
 		return  array(
 			'thumbnail' => array(
-				'width' => get_option( 'thumbnail_size_w' ),
+				'width'  => get_option( 'thumbnail_size_w' ),
 				'height' => get_option( 'thumbnail_size_h' ),
 			),
-			'medium' => array(
-				'width' => get_option( 'medium_size_w' ),
+			'medium'    => array(
+				'width'  => get_option( 'medium_size_w' ),
 				'height' => get_option( 'medium_size_h' ),
 			),
-			'large' => array(
-				'width' => get_option( 'large_size_w' ),
+			'large'     => array(
+				'width'  => get_option( 'large_size_w' ),
 				'height' => get_option( 'large_size_h' ),
 			),
 		);
