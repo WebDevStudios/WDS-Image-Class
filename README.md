@@ -1,4 +1,3 @@
-# WDS Image Class
 
       ___       __    ________   ________
      |\  \     |\  \ |\   ___ \ |\   ____\
@@ -26,11 +25,23 @@
 
        Library for getting post images and attachments the WDS way.
 
+**Contributors:** [aubreypwd](https://github.com/aubreypwd), [jazzsequence](https://github.com/jazzsequence), [bradp](https://github.com/bradp), **YOU!!** [Submit a pull request](https://github.com/WebDevStudios/WDS-Image-Class/pulls)
+
+## Overview
+
 We always want the post image or an attachment somewhere in our code, but WordPress doesn't, by default, have a fallback that supplies some kind of image (a placeholder).
 
 This library allows you to get a post's featured image (or the first image we can find in the post) or a media file and always have a fallback to a placeholder (which you can define using the customizer).
 
 It also offers up some handy tools you can use like resizing images, etc.
+
+### Usage
+
+Include this file in your theme/plugin, e.g. in the `/includes` folder. For example:
+
+```
+require_once( 'includes/class-wds-image.php' );
+```
 
 ### Handy Functions ###
 
