@@ -1,7 +1,30 @@
 <?php
-
 /**
- * Library for getting post images and attachments the WDS way.
+ *     ___       __    ________   ________
+ *    |\  \     |\  \ |\   ___ \ |\   ____\
+ *    \ \  \    \ \  \\ \  \_|\ \\ \  \___|_
+ *     \ \  \  __\ \  \\ \  \ \\ \\ \_____  \
+ *      \ \  \|\__\_\  \\ \  \_\\ \\|____|\  \
+ *       \ \____________\\ \_______\ ____\_\  \
+ *        \|____________| \|_______||\_________\
+ *                                  \|_________|
+ *     ___   _____ ______    ________   ________   _______
+ *    |\  \ |\   _ \  _   \ |\   __  \ |\   ____\ |\  ___ \
+ *    \ \  \\ \  \\\__\ \  \\ \  \|\  \\ \  \___| \ \   __/|
+ *     \ \  \\ \  \\|__| \  \\ \   __  \\ \  \  ___\ \  \_|/__
+ *      \ \  \\ \  \    \ \  \\ \  \ \  \\ \  \|\  \\ \  \_|\ \
+ *       \ \__\\ \__\    \ \__\\ \__\ \__\\ \_______\\ \_______\
+ *        \|__| \|__|     \|__| \|__|\|__| \|_______| \|_______|
+ *     ________   ___        ________   ________    ________
+ *    |\   ____\ |\  \      |\   __  \ |\   ____\  |\   ____\
+ *    \ \  \___| \ \  \     \ \  \|\  \\ \  \___|_ \ \  \___|_
+ *     \ \  \     \ \  \     \ \   __  \\ \_____  \ \ \_____  \
+ *      \ \  \____ \ \  \____ \ \  \ \  \\|____|\  \ \|____|\  \
+ *       \ \_______\\ \_______\\ \__\ \__\ ____\_\  \  ____\_\  \
+ *        \|_______| \|_______| \|__|\|__||\_________\|\_________\
+ *                                        \|_________|\|_________|
+ *
+ *       Library for getting post images and attachments the WDS way.
  *
  * We always want the post image or an attachment somewhere in our code,
  * but WordPress doesn't, by default, have a fallback that supplies some
@@ -12,7 +35,13 @@
  * a placeholder (which you can define using the customizer).
  *
  * It also offers up some handy tools you can use like resizing images, etc.
+ *
+ * @author  Aubrey Portwood, Chris Reynolds
+ * @package WDS_Image_Class
+ * @version 1.1.0
  */
+
+
 class WDS_Image {
 
 	/**
