@@ -147,7 +147,7 @@ class WDS_Image {
 	 *
 	 * @author Aubrey Portwood
 	 * @since  1.0.0
-	 * @param  array  $args                 Arguments.
+	 * @param  array $args                  Arguments.
 	 * @return string                       The URI.
 	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
@@ -167,7 +167,7 @@ class WDS_Image {
 		// If we have a first image.
 		if ( $post_content_first_image_src ) {
 
-			// Try and find the attachment since all we have is the src
+			// Try and find the attachment since all we have is the src.
 			$attachment_id = attachment_url_to_postid( $post_content_first_image_src );
 
 			if ( $attachment_id ) {
@@ -557,7 +557,7 @@ class WDS_Image {
 	 */
 	public function get_image_placeholder_uri( $args = array() ) {
 		$args = wp_parse_args( $args, array(
-			'size' => 'thumbnail', // Use the smallest size
+			'size' => 'thumbnail', // Use the smallest size.
 		) );
 
 		// What's in the customizer (or default for it)?
@@ -593,7 +593,7 @@ class WDS_Image {
 	/**
 	 * Resizes an image and passes back the URI of that new image.
 	 *
-	 * @author Aubrey Portwood
+	 * @author Aubrey Portwood, Chris Reynolds
 	 * @since  1.0.0
 	 * @param  array $args                  Arguments.
 	 * @return string                       If we can resize the image, the resize image URI, if not the original.
@@ -601,7 +601,7 @@ class WDS_Image {
 	 */
 	public function get_resize_image_uri( $args = array() ) {
 
-		// Arguments
+		// Arguments, yo.
 		$args = wp_parse_args( $args, array(
 			'src'      => false,
 			'size'     => false,
@@ -633,11 +633,11 @@ class WDS_Image {
 			// What's the file's prefix?
 			if ( is_array( $args['size'] ) ) {
 
-				// E.g. 100x100-filename.png
+				// E.g. 100x100-filename.png.
 				$prefix = $args['size']['width'] . 'x' . $args['size']['height'];
 			} else {
 
-				// E.g. medium-filename.png
+				// E.g. medium-filename.png.
 				$prefix = $args['size'];
 			}
 
