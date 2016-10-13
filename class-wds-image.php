@@ -572,7 +572,7 @@ class WDS_Image {
 			$src = get_stylesheet_directory_uri() . "/images/$filename";
 
 			// Resize the image (though it's not an attachment) if full is not requested.
-			if ( $args['size'] !== 'full' ) {
+			if ( 'full' !== $args['size'] ) {
 				return $this->get_resize_image_uri( array(
 					'src'      => get_stylesheet_directory() . "/images/$filename",
 					'size'     => $args['size'],
