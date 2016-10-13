@@ -41,7 +41,7 @@ class WDS_Image {
 	/**
 	 * Figures out if the size requested is a WP named size like 'large'.
 	 *
-	 * @param  mixed  $size  The named size.
+	 * @param  mixed $size  The named size.
 	 *
 	 * @return boolean       True if it is a named size, false if not.
 	 */
@@ -64,7 +64,7 @@ class WDS_Image {
 	 *         'height' => 150,
 	 *     )
 	 *
-	 * @param  array|string  $size full|large|medium|thumbnail or array( 'width', 'height' ).
+	 * @param  array|string $size full|large|medium|thumbnail or array( 'width', 'height' ).
 	 *
 	 * @return boolean       True if it's WP format or acceptable array, false if not.
 	 */
@@ -107,7 +107,7 @@ class WDS_Image {
 			'post_id'       => get_the_ID() ? get_the_ID() : get_queried_object_id(), // Use the post id if in the loop.
 			'attachment_id' => false,
 			'placeholder'   => $this->get_image_placeholder_uri( array(
-				'size' => $this->default_size_placeholder  // Uses the full size or the set placeholder size.
+				'size' => $this->default_size_placeholder,// Uses the full size or the set placeholder size.
 			) ),
 			'include_meta'  => false, // Don't include meta (makes it an Array).
 			'meta_key'      => '', // Get the image from a post meta key.
@@ -135,7 +135,7 @@ class WDS_Image {
 		}
 
 		// Get the src of that first post.
-		$image_in__post = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
+		$image_in__post = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches );
 		$post_content_first_image_src = ( isset( $matches[1][0] ) ) ? $matches[1][0] : false;
 
 		// If we have a first image.
@@ -155,7 +155,7 @@ class WDS_Image {
 					return current( $media );
 				}
 
-			// If it's not an attachment in WP then it's some other image we can't modify.
+				// If it's not an attachment in WP then it's some other image we can't modify.
 			} else {
 				return $post_content_first_image_src;
 			}
@@ -180,30 +180,22 @@ class WDS_Image {
 		// If a value was passed to the default parameter to specify a type of image.
 		if ( $args['default'] ) {
 			$media = $this->get_priority_image( $args );
-		}
-
-		// Try getting an image from an attachment ID that was passed.
+		} // Try getting an image from an attachment ID that was passed.
 		elseif ( $args['attachment_id'] ) {
 
 			$media = $this->get_image_from_attachment_id( $args['attachment_id'], $args['size'] );
 
-		}
-
-		// Try getting an image from a featured image.
+		} // Try getting an image from a featured image.
 		elseif ( has_post_thumbnail( $args['post_id'] ) ) {
 
 			$media = $this->get_featured_image( $args['post_id'], $args['size'] );
 
-		}
-
-		// Try getting an image from a custom meta key that was passed.
+		} // Try getting an image from a custom meta key that was passed.
 		elseif ( $args['meta_key'] ) {
 
 			$media = $this->get_image_from_meta( $args['post_id'], $args['meta_key'], $args['size'] );
 
-		}
-
-		// Try getting an image from a Page Builder meta key that was passed.
+		} // Try getting an image from a Page Builder meta key that was passed.
 		elseif ( ! empty( $args['pb_meta_data'] ) ) {
 
 			$media = $this->get_image_from_pagebuilder_data( $args['pb_meta_data'], $args['size'] );
@@ -614,7 +606,7 @@ class WDS_Image {
 				// Get the size of what was asked for (thumbnail, medium, large, full).
 				$sizes = $this->get_wp_size_options();
 
-			// Custom height/width.
+				// Custom height/width.
 			} elseif ( isset( $args['size']['width'] ) && isset( $args['size']['height'] ) ) {
 				$sizes = array(
 					'custom' => array(
@@ -626,7 +618,7 @@ class WDS_Image {
 				// Use our new custom size.
 				$args['size'] = 'custom';
 
-			// If we're using a named size like 'large' or 'medium'.
+				// If we're using a named size like 'large' or 'medium'.
 			} else {
 
 				// If we don't know what's going on, return the original.
@@ -643,7 +635,7 @@ class WDS_Image {
 			// Use the new file.
 			return $upload_dir['url'] . $new_filename;
 
-		// If the editor chokes, just give back full.
+			// If the editor chokes, just give back full.
 		} else {
 			return $args['src'];
 		}
@@ -677,29 +669,54 @@ $wds_image = new WDS_Image();
  * =====================================================
  */
 
-function wds_get_attachment_uri_or_placeholder_uri( $args ) { global $wds_image; return $wds_image->get_attachment_uri_or_placeholder_uri( $args ); }
-function wds_get_first_image_in_post_uri( $args ) { global $wds_image;           return $wds_image->get_first_image_in_post_uri( $args ); }
-function wds_get_image_placeholder_uri( $args = array() ) { global $wds_image;   return $wds_image->get_image_placeholder_uri( $args ); }
-function wds_get_image_uri( $args = array() ) { global $wds_image;               return $wds_image->get_image_uri( $args ); }
-function wds_get_image_uri_arg_defaults() { global $wds_image;                   return $wds_image->get_image_uri_arg_defaults(); }
-function wds_get_resize_image_uri( $args = array() ) { global $wds_image;        return $wds_image->get_resize_image_uri( $args ); }
-function wds_get_wp_size_options() { global $wds_image;                          return $wds_image->get_wp_size_options(); }
-function wds_image_placeholder_customizer( $wp_customize ) { global $wds_image;  return $wds_image->image_placeholder_customizer( $wp_customize ); }
-function wds_is_acceptable_size_choice( $size ) { global $wds_image;             return $wds_image->is_acceptable_size_choice( $size ); }
-function wds_is_wp_named_size( $size ) { global $wds_image;                      return $wds_image->is_wp_named_size( $size ); }
-function wds_set_default_size_of_image( $size ) { global $wds_image;             return $wds_image->set_default_size_of_image( $size ); }
-function wds_set_default_size_placeholder( $size ) { global $wds_image;          return $wds_image->set_default_size_placeholder( $size ); }
-function wds_the_image( $args = array() ) { global $wds_image;                   return $wds_image->the_image( $args ); }
+function wds_get_attachment_uri_or_placeholder_uri( $args ) {
+	global $wds_image;
+	return $wds_image->get_attachment_uri_or_placeholder_uri( $args ); }
+function wds_get_first_image_in_post_uri( $args ) {
+	global $wds_image;
+	return $wds_image->get_first_image_in_post_uri( $args ); }
+function wds_get_image_placeholder_uri( $args = array() ) {
+	global $wds_image;
+	return $wds_image->get_image_placeholder_uri( $args ); }
+function wds_get_image_uri( $args = array() ) {
+	global $wds_image;
+	return $wds_image->get_image_uri( $args ); }
+function wds_get_image_uri_arg_defaults() {
+	global $wds_image;
+	return $wds_image->get_image_uri_arg_defaults(); }
+function wds_get_resize_image_uri( $args = array() ) {
+	global $wds_image;
+	return $wds_image->get_resize_image_uri( $args ); }
+function wds_get_wp_size_options() {
+	global $wds_image;
+	return $wds_image->get_wp_size_options(); }
+function wds_image_placeholder_customizer( $wp_customize ) {
+	global $wds_image;
+	return $wds_image->image_placeholder_customizer( $wp_customize ); }
+function wds_is_acceptable_size_choice( $size ) {
+	global $wds_image;
+	return $wds_image->is_acceptable_size_choice( $size ); }
+function wds_is_wp_named_size( $size ) {
+	global $wds_image;
+	return $wds_image->is_wp_named_size( $size ); }
+function wds_set_default_size_of_image( $size ) {
+	global $wds_image;
+	return $wds_image->set_default_size_of_image( $size ); }
+function wds_set_default_size_placeholder( $size ) {
+	global $wds_image;
+	return $wds_image->set_default_size_placeholder( $size ); }
+function wds_the_image( $args = array() ) {
+	global $wds_image;
+	return $wds_image->the_image( $args ); }
 
 // ** We could do this, but I can't get this to work **
 // =============================================================
 // $class = new ReflectionClass( 'WDS_Image' );
 // $methods = $class->getMethods( ReflectionMethod::IS_PUBLIC );
-
 // foreach( $methods as $function ) {
-// 	if ( '__construct' != $function->name ) {
-// 		$function_name = $function->name;
-// 		$function = "function wds_$function_name( " . '$args = array()' . " ) { global " . '$wds_image' . "; return " . '$wds_image' . "->$function_name( " . '$args' . " ); }";
-// 		eval( $function );
-// 	}
+// if ( '__construct' != $function->name ) {
+// $function_name = $function->name;
+// $function = "function wds_$function_name( " . '$args = array()' . " ) { global " . '$wds_image' . "; return " . '$wds_image' . "->$function_name( " . '$args' . " ); }";
+// eval( $function );
+// }
 // }
