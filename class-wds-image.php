@@ -29,19 +29,26 @@ class WDS_Image {
 	/**
 	 * The default placeholder image size (when one is not specified).
 	 *
-	 * @var string
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @var    string
 	 */
 	private $default_size_placeholder = 'full';
 
 	/**
 	 * The default image size (when one is not specified).
 	 *
-	 * @var string
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @var    string
 	 */
 	private $default_size_of_image = 'full';
 
 	/**
 	 * Bootup!
+	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 */
 	function __construct() {
 
@@ -52,8 +59,9 @@ class WDS_Image {
 	/**
 	 * Figures out if the size requested is a WP named size like 'large'.
 	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  mixed $size  The named size.
-	 *
 	 * @return boolean       True if it is a named size, false if not.
 	 */
 	public function is_wp_named_size( $size ) {
@@ -75,9 +83,10 @@ class WDS_Image {
 	 *         'height' => 150,
 	 *     )
 	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  array|string $size full|large|medium|thumbnail or array( 'width', 'height' ).
-	 *
-	 * @return boolean       True if it's WP format or acceptable array, false if not.
+	 * @return boolean            True if it's WP format or acceptable array, false if not.
 	 */
 	public function is_acceptable_size_choice( $size ) {
 		return ( is_array( $size ) && isset( $size['width'] ) && isset( $size['height'] ) ) || $this->is_wp_named_size( $size );
@@ -86,6 +95,8 @@ class WDS_Image {
 	/**
 	 * Sets the default image size.
 	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param string|array $size full|large|medium|thumbnail or array( 'width', 'height' ).
 	 */
 	public function set_default_size_of_image( $size ) {
@@ -97,6 +108,8 @@ class WDS_Image {
 	/**
 	 * Sets the default placeholder size.
 	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param string|array $size full|large|medium|thumbnail or array( 'width', 'height' ).
 	 */
 	public function set_default_size_placeholder( $size ) {
@@ -108,6 +121,8 @@ class WDS_Image {
 	/**
 	 * Default arguments for the_image() and get_image_uri().
 	 *
+	 * @author Aubrey Portwood, Chris Reynolds
+	 * @since  1.0.0
 	 * @return array The default arguments for wp_parse_args().
 	 */
 	public function get_image_uri_arg_defaults() {
@@ -130,11 +145,11 @@ class WDS_Image {
 	/**
 	 * Gets the URI of the first image found in the post.
 	 *
-	 * @param  array $args               Arguments.
-	 *
-	 * @see get_image_uri_arg_defaults() Default arguments.
-	 *
-	 * @return string                    The URI.
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @param  array  $args                 Arguments.
+	 * @return string                       The URI.
+	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
 	public function get_first_image_in_post_uri( $args ) {
 		$args = wp_parse_args( $args, $this->get_image_uri_arg_defaults() );
@@ -178,11 +193,11 @@ class WDS_Image {
 	/**
 	 * Get the post image, and use a placeholder if there isn't one.
 	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  string $size                The size of the images/placeholder.
-	 *
-	 * @see  get_image_uri_arg_defaults()  Argument defaults.
-	 *
 	 * @return string                      The URI of the image or false if nothing is found.
+	 * @see  get_image_uri_arg_defaults()  Argument defaults.
 	 */
 	public function get_image_uri( $args = array() ) {
 		$args = wp_parse_args( $args, $this->get_image_uri_arg_defaults() );
@@ -236,6 +251,9 @@ class WDS_Image {
 
 	/**
 	 * Allow a particular method for getting the image to take priority over others.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  array $args The arguments array for the image.
 	 * @return string      The URL to the image, if it matches one of the cases.
 	 */
@@ -268,6 +286,9 @@ class WDS_Image {
 
 	/**
 	 * Get an image from a post meta key (e.g. a CMB2 file upload field).
+	 *
+	 * @author Aubrey Portwood, Chris Reynolds
+	 * @since  1.0.0
 	 * @param  int    $post_id  The post ID.
 	 * @param  string $meta_key The custom post meta key.
 	 * @param  string $size     The size of the image desired.
@@ -307,6 +328,9 @@ class WDS_Image {
 
 	/**
 	 * Get an image from the attachment ID.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  int    $attachment_id The attachment ID of the image.
 	 * @param  string $size          The size of the image desired.
 	 * @return string                The URL of the image, if it exists.
@@ -322,6 +346,9 @@ class WDS_Image {
 
 	/**
 	 * Get an image from the featured image.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  int    $post_id The post ID.
 	 * @param  string $size    The size of the image desired.
 	 * @return string          The URL of the image, if it exists.
@@ -338,6 +365,9 @@ class WDS_Image {
 
 	/**
 	 * Get an image from custom Page Builder template data.
+	 *
+	 * @author Chris Reynolds
+	 * @since  1.0.0
 	 * @param  array  $args An array of Page Builder data to pass to wds_page_builder_get_part_data.
 	 * @param  string $size The size of the image desired.
 	 * @return string       The URL of the image, if it exists.
@@ -381,6 +411,9 @@ class WDS_Image {
 
 	/**
 	 * Get an image ID from the URL.
+	 *
+	 * @author Chris Reynolds, Pippin Williamson
+	 * @since  1.0.0
 	 * @param  string $image_url Full URL of the image file.
 	 * @return int               The image ID.
 	 * @link   https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
@@ -393,6 +426,9 @@ class WDS_Image {
 
 	/**
 	 * Check if a given URL is an image file.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  string $url_to_file URL to the image.
 	 * @param  array  $file_types  Optional. Allowed file types.
 	 * @return boolean
@@ -425,11 +461,11 @@ class WDS_Image {
 	/**
 	 * Get the attachment URI or pass back a placeholder.
 	 *
-	 * @param  array $args               Arguments.
-	 *
-	 * @see get_image_uri_arg_defaults() Default arguments.
-	 *
-	 * @return string|boolean            Placeholder URI.
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @param  array $args                  Arguments.
+	 * @return string|boolean               Placeholder URI.
+	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
 	public function get_attachment_uri_or_placeholder_uri( $args ) {
 		$args = wp_parse_args( $args, $this->get_image_uri_arg_defaults() );
@@ -462,9 +498,10 @@ class WDS_Image {
 	/**
 	 * Outputs the post image or placeholder.
 	 *
-	 * @param  string $size              The desired size of the image.
-	 *
-	 * @see get_image_uri_arg_defaults() Default arguments.
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @param  string $size                 The desired size of the image.
+	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
 	public function the_image( $args = array() ) {
 		$args = wp_parse_args( $args, $this->get_image_uri_arg_defaults() );
@@ -478,6 +515,8 @@ class WDS_Image {
 	/**
 	 * Allows us to set the placeholder image.
 	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
 	 * @param  object $wp_customize The WP Customizer class.
 	 */
 	public function image_placeholder_customizer( $wp_customize ) {
@@ -510,11 +549,11 @@ class WDS_Image {
 	/**
 	 * Gets the image placeholder at the size you want.
 	 *
-	 * @param  array $args               The Arguments.
-	 *
-	 * @see get_image_uri_arg_defaults() Default arguments.
-	 *
-	 * @return string                    The placeholder at the size you want.
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @param  array $args                  The Arguments.
+	 * @return string                       The placeholder at the size you want.
+	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
 	public function get_image_placeholder_uri( $args = array() ) {
 		$args = wp_parse_args( $args, array(
@@ -554,11 +593,11 @@ class WDS_Image {
 	/**
 	 * Resizes an image and passes back the URI of that new image.
 	 *
-	 * @param array $args                Arguments.
-	 *
-	 * @see get_image_uri_arg_defaults() Default arguments.
-	 *
-	 * @return string                    If we can resize the image, the resize image URI, if not the original.
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 * @param  array $args                  Arguments.
+	 * @return string                       If we can resize the image, the resize image URI, if not the original.
+	 * @see    get_image_uri_arg_defaults() Default arguments.
 	 */
 	public function get_resize_image_uri( $args = array() ) {
 
