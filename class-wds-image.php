@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Library for getting post images and attachments the WDS way.
  *
@@ -12,6 +11,7 @@
  * a placeholder (which you can define using the customizer).
  *
  * It also offers up some handy tools you can use like resizing images, etc.
+
  */
 class WDS_Image {
 
